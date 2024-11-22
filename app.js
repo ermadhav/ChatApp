@@ -6,8 +6,6 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-const PORT = process.env.PORT || 3000;
-
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
@@ -17,6 +15,28 @@ app.get("/", (req, res) => {
 let connectedPeers = [];
 let connectedPeersStrangers = [];
 
+// io.on("connection", (socket) => {
+//   connectedPeers.push(socket.id);
+
+//   socket.on("pre-offer", (data) => {
+//     const { calleePersonalCode, callType } = data;
+//     const connectedPeer = connectedPeers.find(
+//       (peerSocketId) => peerSocketId === calleePersonalCode
+//     );
+
+//     if (connectedPeer) {
+//       const data = {
+//         callerSocketId: socket.id,
+//         callType,
+//       };
+//       io.to(calleePersonalCode).emit("pre-offer", data);
+//     } else {
+//       const data = {
+//         preOfferAnswer: "CALLEE_NOT_FOUND",
+//       };
+//       io.to(socket.id).emit("pre-offer-answer", data);
+//     }
+//   });
 io.on("connection", (socket) => {
   connectedPeers.push(socket.id);
 
@@ -110,6 +130,18 @@ io.on("connection", (socket) => {
     io.to(socket.id).emit("stranger-socket-id", data);
   });
 
+  // socket.on("disconnect", () => {
+  //   const newConnectedPeers = connectedPeers.filter(
+  //     (peerSocketId) => peerSocketId !== socket.id
+  //   );
+
+  //   connectedPeers = newConnectedPeers;
+
+  //   const newConnectedPeersStrangers = connectedPeersStrangers.filter(
+  //     (peerSocketId) => peerSocketId !== socket.id
+  //   );
+  //   connectedPeersStrangers = newConnectedPeersStrangers;
+  // });
   socket.on("disconnect", () => {
     const newConnectedPeers = connectedPeers.filter(
       (peerSocketId) => peerSocketId !== socket.id
@@ -123,8 +155,20 @@ io.on("connection", (socket) => {
     connectedPeersStrangers = newConnectedPeersStrangers;
   });
 });
-
-server.listen(PORT, () => {
-  console.log(`listening on ${PORT}`);
-});
-module.exports = server;
+// server.listen(PORT, () => {
+//   console.log(`listening on ${PORT}`);
+// });
+// module.exports = server;
+// Vercel serverless function handler
+module.exports = (req, res) => {
+  if (req.method === "GET") {
+    // Handle HTTP GET requests
+    return app(req, res);
+  }
+  
+  // Handle other methods (like POST) if needed
+  // For WebSocket connections, you need to upgrade the request
+  if (req.method === "POST") {
+    return server(req, res);
+  }
+};
