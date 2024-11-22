@@ -19,6 +19,19 @@ const personalCodeCopyButton = document.getElementById(
 personalCodeCopyButton.addEventListener("click", () => {
   const personalCode = store.getState().socketId;
   navigator.clipboard && navigator.clipboard.writeText(personalCode);
+
+  // Show the notification
+  const notification = document.getElementById("copyNotification");
+  notification.style.display = "block";
+
+  // Set a timer to hide the notification after 3 seconds
+  setTimeout(() => {
+    notification.style.opacity = "0"; // Fade out
+    setTimeout(() => {
+      notification.style.display = "none"; // Hide after fade out
+      notification.style.opacity = "1"; // Reset opacity for next time
+    }, 500); // Wait for fade out to complete
+  }, 1000); // Show for 3 seconds
 });
 
 // register event listeners for connection buttons
