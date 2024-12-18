@@ -1,5 +1,3 @@
-Here’s the updated `README.md` file with emojis for a more engaging and lively presentation:
-
 ---
 
 # **EchoVerse** 🌌
