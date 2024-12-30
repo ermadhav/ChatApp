@@ -15,28 +15,6 @@ app.get("/", (req, res) => {
 let connectedPeers = [];
 let connectedPeersStrangers = [];
 
-// io.on("connection", (socket) => {
-//   connectedPeers.push(socket.id);
-
-//   socket.on("pre-offer", (data) => {
-//     const { calleePersonalCode, callType } = data;
-//     const connectedPeer = connectedPeers.find(
-//       (peerSocketId) => peerSocketId === calleePersonalCode
-//     );
-
-//     if (connectedPeer) {
-//       const data = {
-//         callerSocketId: socket.id,
-//         callType,
-//       };
-//       io.to(calleePersonalCode).emit("pre-offer", data);
-//     } else {
-//       const data = {
-//         preOfferAnswer: "CALLEE_NOT_FOUND",
-//       };
-//       io.to(socket.id).emit("pre-offer-answer", data);
-//     }
-//   });
 io.on("connection", (socket) => {
   connectedPeers.push(socket.id);
 
