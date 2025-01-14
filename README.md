@@ -102,7 +102,3 @@ Have questions or suggestions? Reach out!
 ---
 
 With **EchoVerse**, the world is just a click away. 🌟 Dive in and start connecting today! 🌍
-
----
-
-This version adds a splash of personality and fun with emojis. You can update the placeholders and paths as needed. 😊
