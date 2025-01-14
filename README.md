@@ -96,8 +96,8 @@ Contributions are welcome! 🌟 Follow these steps to contribute:
 
 ## **📬 Contact**
 Have questions or suggestions? Reach out!  
-📧 **Email**: [madhavtiwari2024@gmail.com](mailto:madhavtiwari2024@gmail.com)  
-🐙 **GitHub**: [ermadhav](https://github.com/ermadhav)  
+📧 **Email**: [madhavtiwari2024@gmail.com](mailto:contact.madhavtiwari@gmail.com)  
+🐙 **Linkedin**: [Linkedin](www.linkedin.com/in/ermadhav) 
 
 ---
 
